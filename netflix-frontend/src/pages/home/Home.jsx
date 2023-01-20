@@ -9,6 +9,10 @@ const Home = () => {
       <Navbar />
       <Featured type={"movie"}/>
       <MovieList />
+      <MovieList />
+      <MovieList />
+      <MovieList />
+      <MovieList />
     </div>
    );
 }
