@@ -29,4 +29,4 @@ const MovieListSchema = new Schema (
 );
 
 
-module.export = mongoose.model("MovieList", MovieListSchema)
+module.exports = mongoose.model("MovieList", MovieListSchema)
