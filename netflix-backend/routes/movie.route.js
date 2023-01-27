@@ -94,7 +94,7 @@ movieRoute.get("/random", verify, async (req, res) => {
 
 
 //Get all movies (admin only)
-movieRoute.delete("/:id", verify, async (req, res) => {
+movieRoute.get("/", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {
       const movies = await MovieModel.find();
