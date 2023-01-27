@@ -61,4 +61,21 @@ userRoute.get("/:id", async (req, res) => {
 })
 
 
+//get all users (for admin only)
+userRoute.get("/", verify, async (req, res) => {
+  const query = req.query.new;
+
+  if (req.user.isAdmin) {
+    try {
+      const users = query ? await UserModel.find().sort({_id: -1}).limit(10) : await UserModel.find();
+      res.status(200).json(users)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  } else {
+    res.status(403).json("You're not allowed to see all users")
+  }
+})
+
+
 module.exports = userRoute
