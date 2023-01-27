@@ -59,7 +59,7 @@ movieRoute.delete("/:id", verify, async (req, res) => {
 
 
 //Get Movie by id
-movieRoute.get("/:id", verify, async (req, res) => {
+movieRoute.get("/find/:id", verify, async (req, res) => {
   try {
     const movie = await MovieModel.findById(req.params.id);
     res.status(200).json(movie);
@@ -89,6 +89,21 @@ movieRoute.get("/random", verify, async (req, res) => {
     res.status(200).json(movie);
   } catch (error) {
     res.status(500).json({message:"movie not found", error})
+  }
+})
+
+
+//Get all movies (admin only)
+movieRoute.delete("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      const movies = await MovieModel.find();
+      res.status(200).json(movies.reverse());
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  } else {
+    res.status(403).json("You are not allowed")
   }
 })
 
