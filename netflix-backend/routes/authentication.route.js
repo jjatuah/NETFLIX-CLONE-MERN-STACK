@@ -45,8 +45,6 @@ authRoute.post("/signin", async (req, res) => {
       }, process.env.SECRET_KEY, {expiresIn: "1h"}
     );
 
-    console.log(accessToken);
-
     const {password, ...info} = user._doc
 
     res.status(200).json({info, accessToken})
