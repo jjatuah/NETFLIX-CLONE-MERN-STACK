@@ -43,4 +43,19 @@ movieRoute.put("/:id", verify, async (req, res) => {
 })
 
 
+//Delete Movie
+movieRoute.delete("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      await MovieModel.findByIdAndDelete(req.params.id);
+      res.status(200).json("The moviehas been deleted");
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  } else {
+    res.status(403).json("You are not allowed")
+  }
+})
+
+
 module.exports = movieRoute
