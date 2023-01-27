@@ -5,5 +5,22 @@ const verify = require("../verifyToken");
 
 const movieListRoute = express.Router();
 
+//Create List
+movieListRoute.post("/", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    const newMovieList = new MovieListModel(req.body);
+
+    try {
+      const savedMovieList = await newMovieList.save();
+      res.status(201).json(savedMovieList)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  } else {
+    res.status(403).json("You are not allowed")
+  }
+})
+
+
 
 module.exports = movieListRoute;
