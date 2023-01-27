@@ -42,6 +42,20 @@ movieListRoute.put("/:id", verify, async (req, res) => {
   }
 })
 
+//Delete List
+movieListRoute.delete("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      await MovieListModel.findByIdAndDelete(req.params.id);
+      res.status(200).json("The movie list has been deleted");
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  } else {
+    res.status(403).json("You are not allowed")
+  }
+})
+
 
 
 
