@@ -48,4 +48,17 @@ userRoute.delete("/:id", verify, async (req, res) => {
   }
 })
 
+
+//get user by id
+userRoute.get("/:id", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id)
+    const {password, ...info} = user._doc
+    res.status(200).json(info)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
+
 module.exports = userRoute
