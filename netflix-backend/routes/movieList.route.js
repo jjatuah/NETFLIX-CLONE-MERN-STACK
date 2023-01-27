@@ -1,4 +1,5 @@
 const express = require('express');
+const movieListModel = require('../models/movieList.model');
 const MovieListModel = require("../models/movieList.model");
 const verify = require("../verifyToken");
 
@@ -53,6 +54,35 @@ movieListRoute.delete("/:id", verify, async (req, res) => {
     }
   } else {
     res.status(403).json("You are not allowed")
+  }
+})
+
+
+//Get List
+movieListRoute.get("/", verify, async (req, res) => {
+  const typeQuery = req.query.type;
+  const genreQuery = req.query.genre;
+  let list = [];
+
+  try {
+    if (typeQuery) {
+      if (genreQuery) {
+        list = await MovieListModel.aggregate([
+          { $sample: { size: 10}},
+          { $match: { type: typeQuery, genre: genreQuery}}
+        ]);
+      } else {
+        list = await movieListModel.aggregate([
+          { $sample: {size: 10}},
+          { $match: {type: typeQuery}}
+        ])
+      }
+    } else {
+      list = await MovieListModel.aggregate([{ $sample: { size: 10}}])
+    }
+    res.status(200).json(list);
+  } catch (error) {
+    res.status(500).json(error)
   }
 })
 
