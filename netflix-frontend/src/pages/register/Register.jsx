@@ -1,6 +1,7 @@
 import "./Register.scss";
 import NetflixLogo from "../../assets/NetflixLogo.png";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
@@ -25,7 +26,7 @@ const Register = () => {
       <div className="top">
         <div className="topWrapper">
           <img src={NetflixLogo} alt="Netflix Logo" className="logo" />
-          <button className="loginButton">Sign In</button>
+          <Link className="loginButton" to={"/signin"}><button className="loginButton"> Sign in</button></Link>
         </div>
       </div>
 

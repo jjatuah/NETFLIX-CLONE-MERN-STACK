@@ -4,7 +4,8 @@ import { IoIosNotifications } from "react-icons/io";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { BiDownArrow } from "react-icons/bi"; 
 import "./Navbar.scss";
-import NetflixLogo from "../../assets/NetflixLogo.png"
+import NetflixLogo from "../../assets/NetflixLogo.png";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -18,9 +19,9 @@ const Navbar = () => {
       <div className="navContainer">
         <div className="leftNav">
           <img src={NetflixLogo} alt="netflix logo" />
-          <span>Homepage</span>
-          <span>Series</span>
-          <span>Movies</span>
+          <Link className="link" to="/"><span>Homepage</span></Link>
+          <Link className="link" to="/series"><span>Series</span></Link>
+          <Link className="link" to="/movies"><span>Movies</span></Link>
           <span>New and Popular</span>
           <span>My List</span>
         </div>
