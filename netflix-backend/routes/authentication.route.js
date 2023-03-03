@@ -42,7 +42,7 @@ authRoute.post("/signin", async (req, res) => {
       {
         id: user._id,
         isAdmin: user.isAdmin
-      }, process.env.SECRET_KEY, {expiresIn: "1h"}
+      }, process.env.SECRET_KEY, {expiresIn: "9d"}
     );
 
     const {password, ...info} = user._doc
