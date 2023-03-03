@@ -16,26 +16,26 @@ const Home = ({type}) => {
       try {
         const response = await axios.get(`http://localhost:8000/api/movielist${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, {
           headers: {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJjNTBjOTA2ZDg1MDA4ZWNmOTY4YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NjczODg0MSwiZXhwIjoxNjc2NzQyNDQxfQ.Bho8o8s41XYDQQwrHxorXWmcZ_MhNee40c4L2LSELO8"
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJjNTBjOTA2ZDg1MDA4ZWNmOTY4YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3Nzg0MTA3OSwiZXhwIjoxNjc3ODQ0Njc5fQ.I6cssHKLEkA5R7FDflvEj-zJ0RcI98lR1cW7hJcSolI"
           }
         });  
 
-        console.log(response);
+        setList(response.data)
+        console.log(response.data);
+
       } catch (error) { 
-        // console.log(error);
+        console.log(error);
       }
     }
     getLists()
   }, [type, genre])
-  return ( 
+  return (  
     <div className="home">
       <Navbar />
-      <Featured type={type}/>
-      <MovieList />
-      <MovieList />
-      <MovieList />
-      <MovieList />
-      <MovieList />
+      <Featured type={type} />
+      {list.map((list) => (
+        <MovieList list={list} />
+      ))}
     </div>
    );
 }

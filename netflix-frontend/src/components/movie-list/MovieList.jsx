@@ -7,7 +7,7 @@ import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 
 
-const MovieList = () => {
+const MovieList = ({list}) => {
 
   const movieListRef = useRef();
 
@@ -36,20 +36,13 @@ const MovieList = () => {
   }
   return ( 
     <div className="movieList">
-      <span className="movieListTitle">Continue to watch</span>
+      <span className="movieListTitle">{list.title}</span>
       <div className="wrapper">
         <MdArrowBackIos className="sliderArrow left" onClick={() => handleClick("left")} style={{display: !isMoved && "none"}} />
         <div className="container" ref={movieListRef}>
-          <ListItem index = {0} />
-          <ListItem index = {1} />
-          <ListItem index = {2} />
-          <ListItem index = {3} />
-          <ListItem index = {4} />
-          <ListItem index = {5} />
-          <ListItem index = {6} />
-          <ListItem index = {7} />
-          <ListItem index = {8} />
-          <ListItem index = {9} />        
+          {list.content.map((item, index) => (
+            <ListItem item = {item} index = {index} />
+          ))}    
         </div>
         <MdArrowForwardIos className="sliderArrow right" onClick={() => handleClick("right")} />
       </div>
