@@ -7,6 +7,7 @@ import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 
 
+
 const MovieList = ({list}) => {
 
   const movieListRef = useRef();

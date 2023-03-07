@@ -5,6 +5,7 @@ import { MdOutlineAdd } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ListItem = ({index, item}) => {
 
@@ -33,41 +34,43 @@ const ListItem = ({index, item}) => {
 
 
   return ( 
-    <div className="listItem" 
-    style={{ left: isHovered && index * 225 - 50 + index * 2.5}}
-    onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
-      <img
-        src={movie.img}
-        alt=""
-      />
-      {
-        isHovered && ( 
-          <>
-            <video src={movie.trailer} autoPlay={true} loop />
-            <div className="itemInfo">
-              <div className="itemIcons">
-                <FaPlay className="itemIcon" />
-                <MdOutlineAdd className="itemIcon" />
-                <BiLike className="itemIcon" />
-                <BiDislike className="itemIcon" />
-              </div>
+    <Link to={{pathname : "/watch"}} state={{movieData : movie}}>
+        <div className="listItem" 
+      style={{ left: isHovered && index * 225 - 50 + index * 2.5}}
+      onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
+        <img
+          src={movie.img}
+          alt=""
+        />
+        {
+          isHovered && ( 
+            <>
+              <video src={movie.trailer} autoPlay={true} loop />
+              <div className="itemInfo">
+                <div className="itemIcons">
+                  <FaPlay className="itemIcon" />
+                  <MdOutlineAdd className="itemIcon" />
+                  <BiLike className="itemIcon" />
+                  <BiDislike className="itemIcon" />
+                </div>
 
-              <div className="itemInfoTop">
-                <span>{movie.duration}</span>
-                <span className="limit">{movie.limit}</span>
-                <span>{movie.year}</span>
-              </div>
+                <div className="itemInfoTop">
+                  <span>{movie.duration}</span>
+                  <span className="limit">{movie.limit}</span>
+                  <span>{movie.year}</span>
+                </div>
 
-              <div className="itemDesc">
-                {movie.desc}
-              </div>
+                <div className="itemDesc">
+                  {movie.desc}
+                </div>
 
-              <div className="genre">{movie.genre}</div>
-            </div>
-          </>
-        )
-      }
-    </div>
+                <div className="genre">{movie.genre}</div>
+              </div>
+            </>
+          )
+        }
+      </div>
+    </Link>
    );
 }
  
