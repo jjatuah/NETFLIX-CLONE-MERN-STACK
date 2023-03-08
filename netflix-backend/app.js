@@ -3,6 +3,7 @@ require("dotenv").config();
 const {connectToMongoDB} = require("./db")
 const authRoute = require("./routes/authentication.route");
 const userRoute = require("./routes/user.route");
+const userStatsRoute = require("./routes/userStats.route");
 const movieRoute = require("./routes/movie.route");
 const movieListRoute = require("./routes/movieList.route");
 const cors = require("cors");
@@ -43,6 +44,7 @@ app.get("/bb", (req, res) => {
 //Connecting all routes
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
+app.use("/api/userstats", userStatsRoute)
 app.use("/api/movie", movieRoute)
 app.use("/api/movielist", movieListRoute)
 

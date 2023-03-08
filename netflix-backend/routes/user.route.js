@@ -77,7 +77,7 @@ userRoute.get("/", verify, async (req, res) => {
 })
 
 
-//get user stats (for admin only)
+// get user stats (for admin only)
 // userRoute.get("/stats", verify, async (req, res) => {
 //   if (req.user.isAdmin) {
 //     const today = new Date();
