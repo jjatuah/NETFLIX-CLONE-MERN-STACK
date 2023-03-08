@@ -1,9 +1,31 @@
 import "./Featured.scss";
-import { FaPlay } from "react-icons/fa";
+import { FaAsymmetrik, FaPlay } from "react-icons/fa";
 import { ImInfo } from "react-icons/im";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 const Featured = ({type}) => {
+
+  const [content, setContent] = useState({})
+
+  useEffect(
+    () => {
+      const getRandomContent = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/movie/random?type=${type}`, {
+            headers: {
+              token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJjNTBjOTA2ZDg1MDA4ZWNmOTY4YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3Nzg0Nzg1NSwiZXhwIjoxNjc4NjI1NDU1fQ.OKuFwZlVS1pBioDztXe0Tt9nfDqmmbRyhSY3PwBPp6s"
+            }
+          });
+          setContent(response.data[0])
+        } catch (error) {
+          console.log(error);
+        }
+      }; 
+      getRandomContent()
+    }, [type]
+  )
   return ( 
     <div className="featured">
 
@@ -29,15 +51,15 @@ const Featured = ({type}) => {
         </div>
       )}
 
-      <img /*width="100%"*/ src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+      <img /*width="100%"*/ src={content.img} alt="" />
 
       <div className="info">
         <img
-          src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1"
+          src={content.imgSm}
           alt=""
         />
         <span className="desc">
-          To use the font Icon component or the prebuilt SVG Material Icons (such as those found in the icon demos), you must first install the Material Icons font. You can do so with npm or yarn, or with the Google Web Fonts CDN.
+          {content.desc}
         </span>
 
         <div className="buttons">
