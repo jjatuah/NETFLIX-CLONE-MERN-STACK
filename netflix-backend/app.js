@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 8000 
 
 const corsOrigin ={
-  origin:'http://localhost:3000', //or whatever port your frontend is using
+  origin:'*', //or whatever port your frontend is using
   credentials:true,            
   optionSuccessStatus:200
 }

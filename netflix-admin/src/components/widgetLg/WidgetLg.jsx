@@ -74,6 +74,7 @@ export default function WidgetLg() {
             <Button type="Approved" />
           </td>
         </tr>
+
       </table>
     </div>
   );

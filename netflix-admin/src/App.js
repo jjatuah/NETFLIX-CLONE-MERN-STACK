@@ -22,14 +22,14 @@ function App() {
     ()=> {
       const getStats = async () => {
         try {
-          const response = await axios.get(`http://localhost:8000/api/user/stats`, {
+          const response = await axios.get(`http://localhost:8000/api/userstats`, { 
             headers: {
               token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJjNTBjOTA2ZDg1MDA4ZWNmOTY4YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3Nzg0Nzg1NSwiZXhwIjoxNjc4NjI1NDU1fQ.OKuFwZlVS1pBioDztXe0Tt9nfDqmmbRyhSY3PwBPp6s"
             }
           });   
   
           setUserStats(response.data)
-          console.log(response.data);
+          console.log(response);
   
         } catch (error) { 
           console.log(error);
