@@ -1,5 +1,5 @@
-import "./Login.scss";
-import NetflixLogo from "./NetflixLogo.png"
+import "./Login.css";
+import NFLogo from "./NetflixLogo.png"
 
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
         <div className="topWrapper">
           <img
             className="logo"
-            src={NetflixLogo}
+            src={NFLogo}
             alt="Netflix Logo"
           />
         </div>
@@ -24,7 +24,7 @@ const Login = () => {
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot. <b>Learn more</b>.
           </small>
-        </form>
+        </form> 
       </div>
     </div>
    );
