@@ -1,8 +1,17 @@
+import { useState } from "react";
 import "./Login.css";
 import NFLogo from "./NetflixLogo.png"
 
 
 const Login = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  }
+
   return ( 
     <div className="login">
       <div className="top">
@@ -17,9 +26,16 @@ const Login = () => {
       <div className="loginContainer">
         <form>
           <h1>Admin Sign In</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button className="loginButton">Sign In</button>
+          <input 
+            type="email" 
+            placeholder="Email" 
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input 
+            type="password" placeholder="Password" 
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="loginButton" onClick={handleLogin}>Sign In</button>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot. <b>Learn more</b>.
