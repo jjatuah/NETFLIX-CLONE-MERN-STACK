@@ -9,34 +9,10 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
+
 
 function App() {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-  const [userStats, setUserStats] = useState([]);
-
-  useEffect(
-    ()=> {
-      const getStats = async () => {
-        try {
-          const response = await axios.get(`http://localhost:8000/api/userstats`, { 
-            headers: {
-              token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJjNTBjOTA2ZDg1MDA4ZWNmOTY4YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3Nzg0Nzg1NSwiZXhwIjoxNjc4NjI1NDU1fQ.OKuFwZlVS1pBioDztXe0Tt9nfDqmmbRyhSY3PwBPp6s"
-            }
-          });   
   
-          setUserStats(response.data)
-          console.log(response);
-  
-        } catch (error) { 
-          console.log(error);
-        }
-      }; getStats()
-    }, []
-  )
   return (
     <Router>
       <Topbar />
@@ -55,7 +31,7 @@ function App() {
           <Route path="/newUser">
             <NewUser />
           </Route>
-          <Route path="/products">
+          <Route path="/movies">
             <ProductList />
           </Route>
           <Route path="/product/:productId">
