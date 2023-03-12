@@ -11,11 +11,22 @@ import {
   ChatBubbleOutline,
   WorkOutline,
   Report,
-  PlayCircleOutline
+  PlayCircleOutline,
+  ExitToApp
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { logout } from "../../context/authContext/AuthActions";
 
 export default function Sidebar() {
+
+  const {dispatch} = useContext(AuthContext);
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -94,6 +105,10 @@ export default function Sidebar() {
             <li className="sidebarListItem">
               <Report className="sidebarIcon" />
               Reports
+            </li>
+            <li onClick={handleLogout} className="sidebarListItem">
+              <ExitToApp className="sidebarIcon" />
+              Logout
             </li>
           </ul>
         </div>
