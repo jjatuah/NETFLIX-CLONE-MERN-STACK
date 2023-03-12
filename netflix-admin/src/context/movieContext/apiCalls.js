@@ -3,7 +3,7 @@ import { getMoviesFailure, getMoviesSuccess, getMoviesStart } from "./MovieActio
 
 
 export const getMovies = async (dispatch) => {
-  dispatch(getMoviesStart());
+  // dispatch(getMoviesStart());
 
   try {
     const response = await axios.get("http://localhost:8000/api/movie", {
